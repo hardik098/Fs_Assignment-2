@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student list</title>
+  </head>
+  <body>
+    <h2>JP Dawer : Student list</h2>
+    <div style="display: flex">
+      <form method="GET" action="/list">
+        <input
+          type="text"
+          name="search"
+          placeholder="Search by name or email"
+        />
+
+        <select name="sortBy">
+          <option value="name">Name</option>
+          <option value="age">Age</option>
+          <option value="sem">Semester</option>
+        </select>
+
+        <select name="order">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select> 
+
+        <select name="gender">
+          <option value="">All</option>
+          <option <%= query.gender==='Male'?'selected':"" %> value="Male">Male</option>
+          <option <%= query.gender==='Female'?'selected':"" %> value="Female">Female</option>
+        </select>
+
+        <select name="sem" id="sem">
+          <option value="">All</option>
+          <option value="1st">1st</option>
+          <option <%= query.sem==='2nd'?'selected':"" %> value="2nd">2nd</option>
+          <option value="3rd">3rd</option>
+          <option value="4th">4th</option>
+          <option value="5th">5th</option>
+          <option value="6th">6th</option>
+        </select>
+
+        <button type="submit">Search/Filter</button>
+      </form>
+    </div>
+    <table border="1">
+      <thead>
+        <th style="padding: 6px">Index</th>
+        <th style="padding: 6px">Roll no</th>
+        <th style="padding: 6px">Name</th>
+        <th style="padding: 6px">Semseter</th>
+        <th style="padding: 6px">Age</th>
+        <th style="padding: 6px">Gender</th>
+        <th style="padding: 6px">Email</th>
+        <th style="padding: 6px">Action</th>
+      </thead>
+
+      <tbody style="padding: 10px">
+        <% var x=1 %> <% students.forEach((s)=>{ %>
+        <tr>
+          <td style="padding: 6px"><%=x++ %></td>
+          <td style="padding: 6px"><%=s.rno %></td>
+          <td style="padding: 6px"><%=s.name %></td>
+          <td style="padding: 6px"><%=s.sem %></td>
+          <td style="padding: 6px"><%=s.age %></td>
+          <td style="padding: 6px"><%=s.gender %></td>
+          <td style="padding: 6px"><%=s.email %></td>
+          <td style="padding: 6px">
+            <a href="/edit/<%=s._id %>">Edit</a> |
+            <a href="/delete/<%=s._id %>">Delete</a>
+          </td>
+        </tr>
+        <% })%>
+      </tbody>
+    </table>
+  </body>
+</html>

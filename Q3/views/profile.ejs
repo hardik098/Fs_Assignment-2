@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <h1>Welcome, <%= user.name %></h1>
+    <br />
+
+    <form id="profileForm" enctype="multipart/form-data">
+      Update Name :
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value="<%= user.name %>"
+        required
+      /><br /><br />
+      Upload Profile Image :
+      <input type="file" name="profileImg" id="profileImg" /><br /><br />
+      <button type="submit">Update profile</button>
+      <div id="msg"></div>
+    </form>
+  </body>
+</html>
+
+<script>
+  $("#profileForm").on("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(this); // 'this' refers to the form
+    $.ajax({
+      method: "POST",
+      url: "/user/profile",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function () {
+        alert("Profile Updated");
+      },
+      error: function (err) {
+        $("#msg").html("Error updating profile");
+      },
+    });
+  });
+</script>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>File List</title>
+  </head>
+  <body>
+    <h2>Uploaded Files</h2>
+    <ul>
+      <% users.forEach(user => { %> <% user.files.forEach(file => { %>
+      <li>
+        <a href="/download/<%= file.split('/').pop() %>"
+          ><%= file.split('/').pop() %></a
+        >
+      </li>
+      <% }) %> <% }) %>
+    </ul>
+  </body>
+</html>

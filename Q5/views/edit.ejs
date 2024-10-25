@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit student</title>
+  </head>
+  <body>
+    <h2>Edit student data</h2>
+    <form action="/edit/<%= s._id %>" method="post">
+      Name :
+      <input
+        type="text"
+        required
+        name="name"
+        id="name"
+        value="<%= s.name %>"
+        placeholder="Jhon Doe"
+      /><br /><br />
+
+      Roll number :
+      <input
+        type="number"
+        value="<%= s.rno %>"
+        required
+        name="rno"
+        id="rno"
+      /><br /><br />
+
+      Semester :
+      <select name="sem" id="sem">
+        <option value="">Select semester</option>
+        <option value="1st" <%= s.sem==='1st'?'selected':'' %>>First semester</option>
+        <option value="2nd" <%= s.sem==='2nd'?'selected':'' %>>Second semester</option>
+        <option value="3rd" <%= s.sem==='3rd'?'selected':'' %>>Third semester</option>
+        <option value="4th" <%= s.sem==='4th'?'selected':'' %>>Fourth semester</option>
+        <option value="5th" <%= s.sem==='5th'?'selected':'' %>>Fifth semester</option>
+        <option value="6th" <%= s.sem==='6th'?'selected':'' %>>Sixth semester</option></select
+      ><br /><br />+
+
+      Gender :
+      <input type="radio" <%= s.gender==='Male'?'checked':'' %>  name="gender" id="gender" value="Male" />male
+      <input type="radio" <%= s.gender==='Female'?'checked':'' %> name="gender" id="gender" value="Female" />Female
+      <br /><br />
+
+      Age :
+      <input
+        type="number"
+        value="<%= s.age %>"
+        required
+        name="age"
+        id="age"
+        min="5"
+      /><br /><br />
+
+      Email :
+      <input
+        type="email"
+        name="email"
+        value="<%= s.email %>"
+        id="email"
+        placeholder="abc@example.com"
+        required
+      /><br /><br />
+
+      Password :
+      <input
+        type="password"
+        name="password"
+        id="password"
+        value="<%= s.password %>"
+        required
+      /><br /><br />
+      <input type="submit" value="Update" style="color: blue" />
+    </form>
+  </body>
+</html>

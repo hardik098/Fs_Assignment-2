@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin login</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <h1>Login to access student list and manage session</h1>
+    <form id="loginForm" name="loginForm">
+      Email :
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="abc@example.com"
+        required
+      /><br /><br />
+      Password :
+      <input
+        type="password"
+        name="password"
+        id="password"
+        required
+      /><br /><br />
+      <input
+        type="submit"
+        value="Login"
+        style="color: whitesmoke; background-color: green"
+      /><br />
+      <div id="err" style="color: red"></div>
+    </form>
+  </body>
+</html>
+
+<script>
+  $("#loginForm").on("submit", (e) => {
+    e.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: "/loginSession",
+      data: {
+        email: $("#email").val(),
+        password: $("#password").val(),
+      },
+      success: (e) => {
+        alert("Login successful");
+        window.location.href = "/list";
+      },
+      error: (err) => {
+        $("#err").html("Login failed " + err);
+      },
+    });
+  });
+</script>
